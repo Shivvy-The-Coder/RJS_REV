@@ -10,5 +10,7 @@
   console.log(typeof num);
 
   let Num = Number (num)
+  console.log(num)
   console.log(typeof Num);
-  
+
+//   NaN -> this mean not a number 
