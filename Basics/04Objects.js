@@ -2,7 +2,11 @@
 // object literals
 
 // onject has been created below
-const jsUser = {}
+const jsUser = {
+// data is stored in the form of keyvalue pairs
+name :"Shivam"
+
+}
 
 // second method 
 Object.create
