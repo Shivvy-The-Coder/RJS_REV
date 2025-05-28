@@ -1,0 +1,12 @@
+body
+{
+    padding: 10px 10px;
+
+}
+.title
+{
+    font-size: 50px;
+    font-weight: bold;
+    color: gold;
+    text-shadow: 2px 2px 2px black;
+}

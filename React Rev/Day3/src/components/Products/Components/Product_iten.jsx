@@ -1,17 +1,17 @@
-
+import styles from "./Product_item.module.css"
 function ButtonComponent()
 {
-    return <button>Click</button>;
+    return <button className={styles.buttonStyle}>Click</button>;
 }
 
 
-function ProductIten()
+function ProductIten({singleProductItem})
 {
     return(
-        <>
-        <h3>Ecommerce Project</h3>
+        < div style={{padding:'20px'}}>
+        <p className={styles.productTitle}>{singleProductItem}</p>
         <ButtonComponent/>
-        </>
+        </div>
     )
 }
 
