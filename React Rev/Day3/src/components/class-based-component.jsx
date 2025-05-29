@@ -24,6 +24,16 @@ class ClassBasedComponent extends Component
             changeColor:!this.state.changeColor
         });
     };
+
+
+    // componentDidMount
+
+    componentDidMount(){
+        console.log("This will be active for first time when the page has been loaded")
+    }
+
+    // componentDidUpdate
+    // componentWillUnmount
     render (){
         console.log(this.state.showText)
         return (<div>

@@ -12,7 +12,7 @@ function App() {
       <h1>Helloo react from Shivam</h1>
       <ClassBasedComponent/>
       <FunctionalComponents/>
-      <ClassBasedComponent2/>
+      {/* <ClassBasedComponent2/> */}
        <ProductList name="Shivam" city="Ranchi" data={DummyData}/>
     </>
   )
