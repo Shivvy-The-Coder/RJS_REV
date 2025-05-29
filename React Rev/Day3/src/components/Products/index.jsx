@@ -1,15 +1,17 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ProductIten from "./Components/Product_iten";
 import "./Components/style.css";
+import { use } from "react";
 
 function ProductList ({name, city ,data})
 {
 
     // const flag = true;
 
-
+        //here i am using useState  
     const [flag , setflag]= useState(false)
     const [count, setcount] = useState(0);
+    const [changeStyle , setChangeStyle] = useState(false)
     function handleToggleText(){
         setflag(!flag)
     }
@@ -23,6 +25,19 @@ function ProductList ({name, city ,data})
             if(count>0)
             setcount(count-1);
         }
+
+
+    // UseEffect is used to manage any kind of side effecr in the application , it is bascically similar to componentDidMount and componentDidUpdate
+        useEffect(()=>{
+            console.log("run only once page is loaded");
+            setflag(!flag)
+        },[] ) //this will only run page load once
+
+    useEffect(()=>{
+       console.log(`count has been increased ${count}`) 
+       count>10?setChangeStyle(!changeStyle):''
+    },[count])
+
     return(
 
             <>
@@ -38,8 +53,8 @@ function ProductList ({name, city ,data})
             </ul>
 
             <p>{count}</p>
-            <button onClick={Add1}> Add1</button>
-            <button onClick={Minus1}> Minus1</button>
+            <div><button onClick={Add1}  style={{color:changeStyle?"red":"blue"}}> Add1</button></div>
+            <div><button onClick={Minus1}> Minus1</button></div>           
         </>
     )
 }
