@@ -10,8 +10,8 @@ function App() {
   return (
     <>
       <h1>Helloo react from Shivam</h1>
-      <ClassBasedComponent/>
-      <FunctionalComponents/>
+      {/* <ClassBasedComponent/> */}
+      {/* <FunctionalComponents/> */}
       {/* <ClassBasedComponent2/> */}
        <ProductList name="Shivam" city="Ranchi" data={DummyData}/>
     </>

@@ -1,32 +1,45 @@
+import { useState } from "react";
 import ProductIten from "./Components/Product_iten";
-import "./Components/style.css"
+import "./Components/style.css";
 
 function ProductList ({name, city ,data})
 {
 
-    const flag = true;
+    // const flag = true;
 
-    // writing with the help of a function to reduce the return code complexity
-    function renderTextBlock (flag)
-    {
-       return  flag ? (<h1 className="title">Ecommerce Project</h1> ): (<h1 className="title">Welcome SHivam</h1>);
+
+    const [flag , setflag]= useState(false)
+    const [count, setcount] = useState(0);
+    function handleToggleText(){
+        setflag(!flag)
     }
 
-    const val = flag?(<h1 className="title">Bulla</h1> ): (<h1 className="title">Welcome SHivam</h1>);
-
+    function Add1()
+        {
+            setcount(count+1);
+        }
+    function Minus1()
+        {
+            if(count>0)
+            setcount(count-1);
+        }
     return(
-        <>
-                    
-            {renderTextBlock(flag)}
-            {val}
-            {/* we will be using mapmethod to  */}
+
+            <>
+            
             <h4>name is {name}, he/she belong to {city}</h4>
+            {flag?<p>Hello</p>:""}
+            <button onClick={handleToggleText}>Toggle_State</button>
             <ul>
                 {
                   data.map((item, index)=>(
                     <ProductIten singleProductItem={item}  key={index} />
                   ))}
             </ul>
+
+            <p>{count}</p>
+            <button onClick={Add1}> Add1</button>
+            <button onClick={Minus1}> Minus1</button>
         </>
     )
 }

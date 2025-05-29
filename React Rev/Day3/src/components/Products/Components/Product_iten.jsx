@@ -8,7 +8,7 @@ function ButtonComponent()
 function ProductIten({singleProductItem})
 {
     return(
-        < div style={{padding:'20px'}}>
+        < div style={{padding:'5px' , border:'1px solid red', margin:'15px'}}>
         <p className={styles.productTitle}>{singleProductItem}</p>
         <ButtonComponent/>
         </div>
