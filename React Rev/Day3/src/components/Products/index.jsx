@@ -1,8 +1,6 @@
 import { useEffect, useState } from "react";
 import ProductIten from "./Components/Product_iten";
 import "./Components/style.css";
-import { use } from "react";
-
 function ProductList ({name, city ,data})
 {
 
@@ -34,8 +32,11 @@ function ProductList ({name, city ,data})
         },[] ) //this will only run page load once
 
     useEffect(()=>{
-       console.log(`count has been increased ${count}`) 
-       count>10?setChangeStyle(!changeStyle):''
+       count==10?setChangeStyle(!changeStyle):''
+
+       return ()=>{
+        console.log("here the component is getting unmounted")
+       }
     },[count])
 
     return(
