@@ -9,3 +9,4 @@ function GlobalState ({children})
     return <GlobalContext.Provider value={{theme,setTheme}}>{children}</GlobalContext.Provider>
 }
 export default GlobalState;
+

@@ -4,8 +4,8 @@ import { useEffect,useState } from 'react';
 const Carts = () => {
     const [items, setItems] = useState([]); 
     const [loading, setLoading] = useState(false);
+
     async function fetchAllNames() {
-    
     try
     {
         setLoading(true);
