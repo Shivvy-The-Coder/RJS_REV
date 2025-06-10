@@ -3,6 +3,7 @@ import cors from "cors";
 import "dotenv/config";
 import cookieParser  from "cookie-parser";
 import connectDB from "./config/mongodb.js";
+import authRouter from "./routes/authRoutes.js"
 
 const app = express();
 const port = process.env.port || 4000;
@@ -13,10 +14,9 @@ app.use(cookieParser());
 app.use(cors({credentials:true})) //credentials true so that we can send cookies in the response from the express app
 
 
-
-app.get("/",(req,res)=>{
-    res.send("API Working");
-})
+// API EndPoints
+app.get("/",(req,res)=>{res.send("API Working");})
+app.use("/api/auth", authRouter)
 app.listen(port , (req,res)=>
 {
     console.log(`Application is running on Port ${port}`);
