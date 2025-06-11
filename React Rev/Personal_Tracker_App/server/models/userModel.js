@@ -10,11 +10,9 @@ const userSchema = new mongoose.Schema({
     // below will contain the default values adn generally used for verification process, this will automatically added for any new user
     verifyOtp : {type:String , default:''},
     verifyOtpExpireAt : {type:Number , default:0},
-    verifyOtp : {type:String , default:''},
-    verifyOtpExpireAt : {type:Number , default:0},
     isAccountVerified : {type:Boolean , default:false},
     resetOTP : {type:String , default:''},
-    verifyOtpExpireAt : {type:Number , default:0},
+    resetOtpExpireAt : {type:Number , default:0},
 });
 
 // herr we will not export  userSchema becuase theis schema is being used by model;
