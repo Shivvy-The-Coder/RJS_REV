@@ -1,4 +1,4 @@
-// import React, { useState ,useEffect ,useContext} from 'react';
+// import React, { useState, useEffect, useContext } from 'react';
 // import axios from 'axios';
 // import { toast } from 'react-toastify';
 // import { AppContext } from '../context/AppContext.jsx';
@@ -28,7 +28,7 @@
 //         toast.error(data.message);
 //       }
 //     } catch (error) {
-//       toast.error('Error fetching data.',error.message);
+//       toast.error('Error fetching data.', error.message);
 //     }
 //   };
 
@@ -53,7 +53,7 @@
 
 //   // Add new skill
 //   const addSkill = async () => {
-//     if (!newSkill.name || !newSkill.proficiency || !newSkill.hours) {
+//     if (!newSkill.name || !newSkill.proficiency || !newSkill.hoursSpent) {
 //       return toast.warn('Fill all skill fields.');
 //     }
 
@@ -61,13 +61,13 @@
 //       const { data } = await axios.post(`${backendUrl}/api/skill/add`, newSkill);
 //       if (data.success) {
 //         toast.success('Skill added!');
-//         setNewSkill({ name: '', proficiency: '', hours: '' });
+//         setNewSkill({ name: '', proficiency: '', hoursSpent: '' });
 //         fetchData();
 //       } else {
 //         toast.error(data.message);
 //       }
 //     } catch (error) {
-//       toast.error('Error adding skill.' , error.message);
+//       toast.error('Error adding skill.', error.message);
 //     }
 //   };
 
@@ -82,13 +82,13 @@
 //         toast.error(data.message);
 //       }
 //     } catch (error) {
-//       toast.error('Error deleting skill.',error.message);
+//       toast.error('Error deleting skill.', error.message);
 //     }
 //   };
 
 //   // Update skill
 //   const updateSkill = async (id) => {
-//     if (!editSkillData.name || !editSkillData.proficiency || !editSkillData.hours) {
+//     if (!editSkillData.name || !editSkillData.proficiency || !editSkillData.hoursSpent) {
 //       return toast.warn('Fill all skill fields.');
 //     }
 
@@ -97,7 +97,7 @@
 //       if (data.success) {
 //         toast.success('Skill updated!');
 //         setEditingSkill(null);
-//         setEditSkillData({ name: '', proficiency: '', hours: '' });
+//         setEditSkillData({ name: '', proficiency: '', hoursSpent: '' });
 //         fetchData();
 //       } else {
 //         toast.error(data.message);
@@ -113,14 +113,14 @@
 //     setEditSkillData({
 //       name: skill.name,
 //       proficiency: skill.proficiency,
-//       hours: skill.hours
+//       hoursSpent: skill.hoursSpent,
 //     });
 //   };
 
 //   // Cancel editing
 //   const cancelEditing = () => {
 //     setEditingSkill(null);
-//     setEditSkillData({ name: '', proficiency: '', hours: '' });
+//     setEditSkillData({ name: '', proficiency: '', hoursSpent: '' });
 //   };
 
 //   return (
@@ -158,7 +158,7 @@
 //               </div>
 //               <div className="text-center bg-green-50 p-4 rounded-xl">
 //                 <div className="text-2xl font-bold text-green-600">
-//                   {skills.reduce((total, skill) => total + parseInt(skill.hours || 0), 0)}
+//                   {skills.reduce((total, skill) => total + parseInt(skill.hoursSpent || 0), 0)}
 //                 </div>
 //                 <div className="text-sm text-gray-500">Hours</div>
 //               </div>
@@ -172,7 +172,7 @@
 //             <span className="w-6 h-6 mr-3 text-blue-600">👤</span>
 //             Personal Information
 //           </h2>
-          
+
 //           <div className="space-y-6">
 //             <div>
 //               <label className="block text-sm font-semibold text-gray-700 mb-3">Bio</label>
@@ -235,12 +235,11 @@
 //                 placeholder="Hours Spent"
 //                 className="border-2 border-gray-200 p-3 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500 transition-all duration-200 bg-white"
 //                 value={newSkill.hoursSpent}
-//                 onChange={(e) => setNewSkill({ ...newSkill, hoursSpent: Number(e.target.value )})}
+//                 onChange={(e) => setNewSkill({ ...newSkill, hoursSpent: Number(e.target.value) })}
 //               />
 //               <button
 //                 className="bg-gradient-to-r from-green-500 to-green-600 text-white px-6 py-3 rounded-lg font-semibold hover:from-green-600 hover:to-green-700 transform hover:scale-105 transition-all duration-200 shadow-lg hover:shadow-xl"
 //                 onClick={addSkill}
-                
 //               >
 //                 Add Skill
 //               </button>
@@ -267,14 +266,18 @@
 //                     <input
 //                       type="text"
 //                       value={editSkillData.proficiency}
-//                       onChange={(e) => setEditSkillData({ ...editSkillData, proficiency: e.target.value })}
+//                       onChange={(e) =>
+//                         setEditSkillData({ ...editSkillData, proficiency: e.target.value })
+//                       }
 //                       className="w-full p-3 border-2 border-blue-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200"
 //                       placeholder="Proficiency level"
 //                     />
 //                     <input
 //                       type="number"
-//                       value={editSkillData.hours}
-//                       onChange={(e) => setEditSkillData({ ...editSkillData, hours: e.target.value })}
+//                       value={editSkillData.hoursSpent}
+//                       onChange={(e) =>
+//                         setEditSkillData({ ...editSkillData, hoursSpent: Number(e.target.value) })
+//                       }
 //                       className="w-full p-3 border-2 border-blue-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200"
 //                       placeholder="Hours spent"
 //                     />
@@ -325,7 +328,7 @@
 //                       <div className="flex items-center justify-between">
 //                         <span className="text-sm font-medium text-gray-600">Hours:</span>
 //                         <span className="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm font-semibold">
-//                           {skill.hours}h
+//                           {skill.hoursSpent}h
 //                         </span>
 //                       </div>
 //                     </div>
@@ -343,6 +346,18 @@
 //             </div>
 //           )}
 //         </div>
+//           <div className="mb-8 p-6 bg-white rounded-xl shadow border border-gray-100">
+//   <h2 className="text-2xl font-bold mb-4">Your Saved Info</h2>
+//   <div className="mb-4">
+//     <h3 className="text-lg font-semibold">Bio:</h3>
+//     <p className="whitespace-pre-wrap text-gray-700">{bio || "No bio set yet."}</p>
+//   </div>
+//   <div>
+//     <h3 className="text-lg font-semibold">Goals:</h3>
+//     <p className="whitespace-pre-wrap text-gray-700">{goals || "No goals set yet."}</p>
+//   </div>
+// </div>
+
 //       </div>
 //     </div>
 //   );
@@ -361,6 +376,7 @@ const Dashboard = () => {
   // Personal Info states
   const [bio, setBio] = useState('');
   const [goals, setGoals] = useState('');
+  const [showPersonalInfoForm, setShowPersonalInfoForm] = useState(false);
 
   // Skills states
   const [skills, setSkills] = useState([]);
@@ -395,6 +411,7 @@ const Dashboard = () => {
       if (data.success) {
         toast.success('Personal info updated!');
         getUserData();
+        setShowPersonalInfoForm(false); // Hide form after successful update
       } else {
         toast.error(data.message);
       }
@@ -477,95 +494,158 @@ const Dashboard = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50">
-      <div className="max-w-6xl mx-auto p-6">
+      <div className="max-w-7xl mx-auto p-4 sm:p-6 lg:p-8">
         {/* Welcome Header with User Info */}
-        <div className="bg-white rounded-2xl shadow-xl p-8 mb-8 border border-gray-100">
-          <div className="flex flex-col md:flex-row items-center justify-between">
-            <div className="flex items-center space-x-6 mb-6 md:mb-0">
+        <div className="bg-white rounded-2xl shadow-xl p-6 sm:p-8 mb-8 border border-gray-100">
+          <div className="flex flex-col lg:flex-row items-center justify-between gap-6">
+            <div className="flex flex-col sm:flex-row items-center space-y-4 sm:space-y-0 sm:space-x-6">
               <div className="relative">
-                <div className="w-20 h-20 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center shadow-lg">
-                  <span className="text-white text-2xl font-bold">
+                <div className="w-20 h-20 sm:w-24 sm:h-24 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center shadow-lg">
+                  <span className="text-white text-2xl sm:text-3xl font-bold">
                     {userData?.name?.charAt(0) || 'U'}
                   </span>
                 </div>
                 <div className="absolute -bottom-1 -right-1 w-6 h-6 bg-green-500 border-2 border-white rounded-full"></div>
               </div>
-              <div>
-                <h1 className="text-3xl font-bold text-gray-900 mb-2">
+              <div className="text-center sm:text-left">
+                <h1 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-2">
                   Welcome, {userData?.name || 'User'}
                 </h1>
-                <div className="flex items-center text-gray-600 mb-1">
+                <div className="flex items-center justify-center sm:justify-start text-gray-600 mb-1">
                   <span className="w-4 h-4 mr-2">📧</span>
-                  <span>{userData?.email || 'user@example.com'}</span>
+                  <span className="text-sm sm:text-base">{userData?.email || 'user@example.com'}</span>
                 </div>
                 <div className="text-sm text-gray-500">
                   Dashboard • Last updated today
                 </div>
               </div>
             </div>
-            <div className="flex items-center space-x-6">
-              <div className="text-center bg-blue-50 p-4 rounded-xl">
-                <div className="text-2xl font-bold text-blue-600">{skills.length}</div>
-                <div className="text-sm text-gray-500">Skills</div>
+            <div className="flex items-center space-x-4 sm:space-x-6">
+              <div className="text-center bg-blue-50 p-3 sm:p-4 rounded-xl">
+                <div className="text-xl sm:text-2xl font-bold text-blue-600">{skills.length}</div>
+                <div className="text-xs sm:text-sm text-gray-500">Skills</div>
               </div>
-              <div className="text-center bg-green-50 p-4 rounded-xl">
-                <div className="text-2xl font-bold text-green-600">
+              <div className="text-center bg-green-50 p-3 sm:p-4 rounded-xl">
+                <div className="text-xl sm:text-2xl font-bold text-green-600">
                   {skills.reduce((total, skill) => total + parseInt(skill.hoursSpent || 0), 0)}
                 </div>
-                <div className="text-sm text-gray-500">Hours</div>
+                <div className="text-xs sm:text-sm text-gray-500">Hours</div>
               </div>
             </div>
           </div>
         </div>
 
-        {/* Personal Info Section */}
-        <div className="bg-white rounded-2xl shadow-xl p-8 mb-8 border border-gray-100">
-          <h2 className="text-2xl font-bold text-gray-900 mb-6 flex items-center">
-            <span className="w-6 h-6 mr-3 text-blue-600">👤</span>
-            Personal Information
-          </h2>
-
-          <div className="space-y-6">
-            <div>
-              <label className="block text-sm font-semibold text-gray-700 mb-3">Bio</label>
-              <textarea
-                className="w-full p-4 border-2 border-gray-200 rounded-xl resize-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200 bg-gray-50 hover:bg-white"
-                rows="4"
-                value={bio}
-                onChange={(e) => setBio(e.target.value)}
-                placeholder="Tell us about yourself..."
-              />
-            </div>
-
-            <div>
-              <label className="block text-sm font-semibold text-gray-700 mb-3">Goals</label>
-              <textarea
-                className="w-full p-4 border-2 border-gray-200 rounded-xl resize-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200 bg-gray-50 hover:bg-white"
-                rows="3"
-                value={goals}
-                onChange={(e) => setGoals(e.target.value)}
-                placeholder="What are your learning goals?"
-              />
-            </div>
-
+        {/* Current Personal Information Display */}
+        <div className="bg-white rounded-2xl shadow-xl p-6 sm:p-8 mb-8 border border-gray-100">
+          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-6">
+            <h2 className="text-xl sm:text-2xl font-bold text-gray-900 flex items-center mb-4 sm:mb-0">
+              <span className="w-6 h-6 mr-3 text-blue-600">👤</span>
+              Personal Information
+            </h2>
             <button
-              className="bg-gradient-to-r from-blue-500 to-blue-600 text-white px-8 py-3 rounded-xl font-semibold hover:from-blue-600 hover:to-blue-700 transform hover:scale-105 transition-all duration-200 shadow-lg hover:shadow-xl"
-              onClick={updatePersonalInfo}
+              onClick={() => setShowPersonalInfoForm(!showPersonalInfoForm)}
+              className={`px-4 sm:px-6 py-2 sm:py-3 rounded-xl font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl ${
+                showPersonalInfoForm
+                  ? 'bg-gradient-to-r from-red-500 to-red-600 text-white hover:from-red-600 hover:to-red-700'
+                  : 'bg-gradient-to-r from-blue-500 to-blue-600 text-white hover:from-blue-600 hover:to-blue-700'
+              }`}
             >
-              Update Information
+              {showPersonalInfoForm ? '❌ Cancel Edit' : '✏️ Edit Info'}
             </button>
+          </div>
+
+          {/* Current Info Display */}
+          <div className="space-y-6">
+            <div className="bg-gradient-to-r from-blue-50 to-indigo-50 p-4 sm:p-6 rounded-xl border border-blue-100">
+              <h3 className="text-lg font-semibold text-gray-800 mb-3 flex items-center">
+                <span className="mr-2">📝</span>
+                Bio
+              </h3>
+              <p className="text-gray-700 leading-relaxed">
+                {bio || (
+                  <span className="text-gray-400 italic">
+                    No bio added yet. Click "Edit Info" to add your bio.
+                  </span>
+                )}
+              </p>
+            </div>
+
+            <div className="bg-gradient-to-r from-green-50 to-emerald-50 p-4 sm:p-6 rounded-xl border border-green-100">
+              <h3 className="text-lg font-semibold text-gray-800 mb-3 flex items-center">
+                <span className="mr-2">🎯</span>
+                Goals
+              </h3>
+              <p className="text-gray-700 leading-relaxed">
+                {goals || (
+                  <span className="text-gray-400 italic">
+                    No goals set yet. Click "Edit Info" to add your goals.
+                  </span>
+                )}
+              </p>
+            </div>
+          </div>
+
+          {/* Collapsible Edit Form */}
+          <div className={`mt-6 transition-all duration-500 ease-in-out ${
+            showPersonalInfoForm ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0 overflow-hidden'
+          }`}>
+            <div className="bg-gradient-to-r from-purple-50 to-pink-50 p-4 sm:p-6 rounded-xl border border-purple-100">
+              <h3 className="font-semibold text-gray-800 mb-4 flex items-center">
+                <span className="mr-2">✏️</span>
+                Update Personal Information
+              </h3>
+              
+              <div className="space-y-4">
+                <div>
+                  <label className="block text-sm font-semibold text-gray-700 mb-2">Bio</label>
+                  <textarea
+                    className="w-full p-3 sm:p-4 border-2 border-gray-200 rounded-xl resize-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500 transition-all duration-200 bg-white hover:bg-gray-50"
+                    rows="4"
+                    value={bio}
+                    onChange={(e) => setBio(e.target.value)}
+                    placeholder="Tell us about yourself..."
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-sm font-semibold text-gray-700 mb-2">Goals</label>
+                  <textarea
+                    className="w-full p-3 sm:p-4 border-2 border-gray-200 rounded-xl resize-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500 transition-all duration-200 bg-white hover:bg-gray-50"
+                    rows="3"
+                    value={goals}
+                    onChange={(e) => setGoals(e.target.value)}
+                    placeholder="What are your learning goals?"
+                  />
+                </div>
+
+                <div className="flex flex-col sm:flex-row gap-3">
+                  <button
+                    className="flex-1 bg-gradient-to-r from-green-500 to-green-600 text-white px-6 py-3 rounded-xl font-semibold hover:from-green-600 hover:to-green-700 transform hover:scale-105 transition-all duration-200 shadow-lg hover:shadow-xl"
+                    onClick={updatePersonalInfo}
+                  >
+                    💾 Save Changes
+                  </button>
+                  <button
+                    className="flex-1 bg-gradient-to-r from-gray-500 to-gray-600 text-white px-6 py-3 rounded-xl font-semibold hover:from-gray-600 hover:to-gray-700 transform hover:scale-105 transition-all duration-200 shadow-lg hover:shadow-xl"
+                    onClick={() => setShowPersonalInfoForm(false)}
+                  >
+                    ❌ Cancel
+                  </button>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
 
         {/* Skills Section */}
-        <div className="bg-white rounded-2xl shadow-xl p-8 border border-gray-100">
-          <h2 className="text-2xl font-bold text-gray-900 mb-6 flex items-center">
+        <div className="bg-white rounded-2xl shadow-xl p-6 sm:p-8 border border-gray-100">
+          <h2 className="text-xl sm:text-2xl font-bold text-gray-900 mb-6 flex items-center">
             <span className="w-6 h-6 mr-3 text-green-600">🏆</span>
             Skills Management
           </h2>
 
           {/* Add New Skill Form */}
-          <div className="bg-gradient-to-r from-green-50 to-blue-50 p-6 rounded-xl mb-8 border border-green-100">
+          <div className="bg-gradient-to-r from-green-50 to-blue-50 p-4 sm:p-6 rounded-xl mb-8 border border-green-100">
             <h3 className="font-semibold text-gray-800 mb-4">Add New Skill</h3>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
               <input
@@ -599,11 +679,11 @@ const Dashboard = () => {
           </div>
 
           {/* Skills List */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4 sm:gap-6">
             {skills.map((skill) => (
               <div
                 key={skill._id}
-                className="group border-2 border-gray-200 p-6 rounded-xl hover:border-blue-300 hover:shadow-lg transition-all duration-200 bg-gradient-to-br from-white to-gray-50"
+                className="group border-2 border-gray-200 p-4 sm:p-6 rounded-xl hover:border-blue-300 hover:shadow-lg transition-all duration-200 bg-gradient-to-br from-white to-gray-50"
               >
                 {editingSkill === skill._id ? (
                   // Edit Mode
@@ -633,7 +713,7 @@ const Dashboard = () => {
                       className="w-full p-3 border-2 border-blue-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200"
                       placeholder="Hours spent"
                     />
-                    <div className="flex space-x-2">
+                    <div className="flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-2">
                       <button
                         onClick={() => updateSkill(skill._id)}
                         className="flex-1 bg-gradient-to-r from-green-500 to-green-600 text-white px-4 py-2 rounded-lg font-semibold hover:from-green-600 hover:to-green-700 transition-all duration-200"
@@ -652,8 +732,8 @@ const Dashboard = () => {
                   // View Mode
                   <div>
                     <div className="flex justify-between items-start mb-3">
-                      <h4 className="font-bold text-lg text-gray-900">{skill.name}</h4>
-                      <div className="flex space-x-2">
+                      <h4 className="font-bold text-lg text-gray-900 break-words">{skill.name}</h4>
+                      <div className="flex space-x-1 sm:space-x-2 ml-2">
                         <button
                           onClick={() => startEditingSkill(skill)}
                           className="opacity-0 group-hover:opacity-100 text-blue-500 hover:text-blue-700 hover:bg-blue-50 p-2 rounded-lg transition-all duration-200"
@@ -692,8 +772,8 @@ const Dashboard = () => {
 
           {skills.length === 0 && (
             <div className="text-center py-12">
-              <div className="text-6xl mb-4">📝</div>
-              <h3 className="text-xl font-semibold text-gray-600 mb-2">No skills added yet</h3>
+              <div className="text-4xl sm:text-6xl mb-4">📝</div>
+              <h3 className="text-lg sm:text-xl font-semibold text-gray-600 mb-2">No skills added yet</h3>
               <p className="text-gray-500">Start by adding your first skill above!</p>
             </div>
           )}

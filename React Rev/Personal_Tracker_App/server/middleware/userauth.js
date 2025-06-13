@@ -1,5 +1,5 @@
 import jwt from "jsonwebtoken";
-import User from '../models/userModel.js';
+import User from "../models/userModel.js";
 
 const userAuth = async (req, res, next) => {
   const token = req.cookies.token || req.headers.authorization?.split(" ")[1];
@@ -7,17 +7,19 @@ const userAuth = async (req, res, next) => {
   if (!token) {
     return res.status(401).json({ success: false, message: "Not Authorized. Login again." });
   }
+
   try {
     const tokenDecode = jwt.verify(token, process.env.JWT_SECRET);
-    
-    if (tokenDecode.id) {
-      req.userId = tokenDecode.id;// safer than modifying req.body
+
+    if (tokenDecode && tokenDecode.id) {
+      req.userId = tokenDecode.id; // Keep variable name as requested
       next();
     } else {
-      return res.json({ success: false, message: "Not Authorized. Login again." });
+      return res.status(401).json({ success: false, message: "Token verification failed." });
     }
   } catch (err) {
-    return res.json({ success: false, message: err.message });
+    console.error("Auth Middleware Error:", err.message);
+    return res.status(401).json({ success: false, message: "Invalid or expired token." });
   }
 };
 
