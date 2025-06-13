@@ -18,6 +18,6 @@ const userSchema = new mongoose.Schema({
 // herr we will not export  userSchema becuase theis schema is being used by model;
 
 // here it will search for the model user , gain and  again , and if and only if it is not present then only it will create the new model
-const  userModel = mongoose.model.user || mongoose.model('user' , userSchema);
+const userModel = mongoose.models.user || mongoose.model('user', userSchema);
 
 export default userModel;
