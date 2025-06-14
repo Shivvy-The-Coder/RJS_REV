@@ -14,15 +14,20 @@ export const AppContextProvider = (props)=>{
     const [isLoggedin , setIsLoggedin] = useState(false)
     const [userData , setUserData] = useState(false)
 
-    const getAuthState = async()=>{
-          try {
-            const {data} = await axios.post(backendUrl+'/api/auth/is-auth');
-            data.success?setIsLoggedin(true) : toast.error(data.message)
-            getUserData()
-          } catch (error) {
-            toast.error(error.message)
-          }
-    }
+    const getAuthState = async () => {
+        try {
+                const { data } = await axios.post(backendUrl + '/api/auth/is-auth');
+                if (data.success) {
+                setIsLoggedin(true);
+                getUserData();
+                } else {
+                toast.error(data.message);
+                }
+            } catch (error) {
+                toast.error(error.message);
+            }
+            };
+
 
     const getUserData = async ()=>{
         try
