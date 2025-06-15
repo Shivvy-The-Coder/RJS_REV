@@ -1,7 +1,7 @@
 import skillModel from "../models/skillModel.js";
 
 export const addSkill = async (req, res) => {
-  console.log("Add Skill Payload:", req.body);  // Log incoming data
+  console.log("Adding  Skill", req.body);  
   const { name, proficiency, hoursSpent } = req.body;
   try {
     const skill = await skillModel.create({
@@ -15,9 +15,10 @@ export const addSkill = async (req, res) => {
     return res.json({ success: false, message: err.message });
   }
 };
+// below is he code for updating skills
 
 export const updateSkill = async (req, res) => {
-  console.log("Update Skill Payload:", req.body);  // Log incoming data
+  console.log("Updating Skill:", req.body);  
   const { skillId, name, proficiency, hoursSpent } = req.body;
 
   const updateFields = {};
