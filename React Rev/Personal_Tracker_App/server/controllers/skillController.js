@@ -39,7 +39,7 @@ export const updateSkill = async (req, res) => {
 
 
 export const deleteSkill = async (req, res) => {
-  const { skillId } = req.body;
+  const skillId  = req.params.id;
   try {
     await skillModel.findOneAndDelete({ _id: skillId, userId: req.userId });
     return res.json({ success: true, message: "Skill deleted" });
